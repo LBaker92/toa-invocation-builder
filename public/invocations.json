@@ -1,0 +1,279 @@
+[
+  {
+    "name": "Try Again",
+    "details": "Players have ten attempts to complete a raid.",
+    "category": "Attempts",
+    "modifier": 5
+  },
+  {
+    "name": "Persistence",
+    "details": "Players have five attempts to complete a raid.",
+    "category": "Attempts",
+    "modifier": 10
+  },
+  {
+    "name": "Softcore Run",
+    "details": "Players have three attempts to complete a raid.",
+    "category": "Attempts",
+    "modifier": 15
+  },
+  {
+    "name": "Hardcore Run",
+    "details": "Players have one attempt to complete a raid.",
+    "category": "Attempts",
+    "modifier": 25
+  },
+  {
+    "name": "Walk for It",
+    "details": "Players have 40 minutes to complete the raid, including time spent between each Path.",
+    "category": "Time Limit",
+    "modifier": 10
+  },
+  {
+    "name": "Jog for It",
+    "details": "Players have 35 minutes to complete the raid. If unsuccessful, the raid level will decrease by 30.",
+    "category": "Time Limit",
+    "modifier": 15
+  },
+  {
+    "name": "Run for It",
+    "details": "Players have 30 minutes to complete the raid. If unsuccessful, the raid level will decrease by 40.",
+    "category": "Time Limit",
+    "modifier": 20
+  },
+  {
+    "name": "Sprint for It",
+    "details": "Players have 25 minutes to complete the raid. If unsuccessful, the raid level will decrease by 50.",
+    "category": "Time Limit",
+    "modifier": 25
+  },
+  {
+    "name": "Need Some Help?",
+    "details": "The quantity of items offered by the Helpful Spirit will be reduced to 66%.",
+    "category": "Helpful Spirit",
+    "modifier": 15
+  },
+  {
+    "name": "Need Less Help?",
+    "details": "The quantity of items offered by the Helpful Spirit will be reduced to 33%.",
+    "category": "Helpful Spirit",
+    "modifier": 25
+  },
+  {
+    "name": "No Help Needed",
+    "details": "The quantity of items offered by the helpful spirit will be reduced to 10%.",
+    "category": "Helpful Spirit",
+    "modifier": 40
+  },
+  {
+    "name": "Walk the Path",
+    "details": "Completing a path during the raid will cause other paths to level up.",
+    "category": "Paths",
+    "modifier": 50
+  },
+  {
+    "name": "Pathseeker",
+    "details": "All paths will level up once upon entering the raid.",
+    "category": "Path Level",
+    "modifier": 15
+  },
+  {
+    "name": "Pathfinder",
+    "details": "All paths will level up twice upon entering the raid.",
+    "category": "Path Level",
+    "modifier": 40
+  },
+  {
+    "name": "Pathmaster",
+    "details": "All paths will level up three times upon entering the raid.",
+    "category": "Path Level",
+    "modifier": 50
+  },
+  {
+    "name": "Quiet Prayers",
+    "details": "Protection prayers will be 10% less effective within the raid.",
+    "category": "Prayer",
+    "modifier": 20
+  },
+  {
+    "name": "Deadly Prayers",
+    "details": "Prayer is drained by 20% of damage taken.",
+    "category": "Prayer",
+    "modifier": 20
+  },
+  {
+    "name": "On a Diet",
+    "details": "Players can no longer eat food within the raid, though potions that restore health (such as Saradomin brews) can still be used.",
+    "category": "Restoration",
+    "modifier": 15
+  },
+  {
+    "name": "Dehydration",
+    "details": "Players can no longer drink potions that restore health.",
+    "category": "Restoration",
+    "modifier": 30
+  },
+  {
+    "name": "Overly Draining",
+    "details": "All special attacks use 100% special attack energy.",
+    "category": "Restoration",
+    "modifier": 15
+  },
+  {
+    "name": "Lively Larvae",
+    "details": "The number of dark brown eggs launched during Kephri's Mass Incubation attack will increase from 2 to 4.",
+    "category": "Kephri",
+    "modifier": 5
+  },
+  {
+    "name": "More Overlords",
+    "details": "An additional scarab is summoned during Kephri's shield healing phases.",
+    "category": "Kephri",
+    "modifier": 15
+  },
+  {
+    "name": "Blowing Mud",
+    "details": "The number of players targeted by Kephri's Dung Strike attack is increased to two.",
+    "category": "Kephri",
+    "modifier": 10
+  },
+  {
+    "name": "Medic!",
+    "details": "Kephri will summon scarab swarms outside her shield healing phases.",
+    "category": "Kephri",
+    "modifier": 15
+  },
+  {
+    "name": "Aerial Assault",
+    "details": "Kephri's auto-attack will do more damage, and its attack range will increase from a single tile to a 3x3 area.",
+    "category": "Kephri",
+    "modifier": 10
+  },
+  {
+    "name": "Not Just a Head",
+    "details": "Zebak will occasionally cast a form of Blood Blitz on all players.",
+    "category": "Zebak",
+    "modifier": 15
+  },
+  {
+    "name": "Arterial Spray",
+    "details": "Zebak's blood magic will have increased range and healing.",
+    "category": "Zebak",
+    "modifier": 10,
+    "dependencies": [
+      "Not Just a Head"
+    ]
+  },
+  {
+    "name": "Blood Thinners",
+    "details": "Three Blood Clouds are summoned instead of one.",
+    "category": "Zebak",
+    "modifier": 5,
+    "dependencies": [
+      "Not Just a Head"
+    ]
+  },
+  {
+    "name": "Upset Stomach",
+    "details": "Zebak's acid pools will have increased spread, and jugs will only wash away a 3x3 area instead of 5x5.",
+    "category": "Zebak",
+    "modifier": 15
+  },
+  {
+    "name": "Double Trouble",
+    "details": "Akkha will perform two special attacks at once.",
+    "category": "Akkha",
+    "modifier": 20
+  },
+  {
+    "name": "Keep Back",
+    "details": "Akkha's ranged and magic attacks will also deal melee damage to anyone next to him.",
+    "category": "Akkha",
+    "modifier": 10
+  },
+  {
+    "name": "Stay Vigilant",
+    "details": "Akkha will randomly switch between attack styles and protection prayers, rather than at set intervals.",
+    "category": "Akkha",
+    "modifier": 15
+  },
+  {
+    "name": "Feeling Special?",
+    "details": "Akkha's Detonate attack will trigger in more directions.",
+    "category": "Akkha",
+    "modifier": 20
+  },
+  {
+    "name": "Mind the Gap!",
+    "details": "When Ba-Ba knocks back the player to the bottom of the room at 66% and 33% health, players will fall into the pit and die, unless they stand at the northern/southern sides of the room.",
+    "category": "Ba-Ba",
+    "modifier": 10
+  },
+  {
+    "name": "Gotta Have Faith",
+    "details": "Energy blasts from open sarcophagi in Ba-Ba's room will deal additional damage based on the player's remaining prayer points.",
+    "category": "Ba-Ba",
+    "modifier": 10
+  },
+  {
+    "name": "Jungle Japes",
+    "details": "Ba-Ba's baboons will drop a banana peel on the floor on death. If stepped on, players take a small amount of damage and is stunned for 3 seconds.",
+    "category": "Ba-Ba",
+    "modifier": 5
+  },
+  {
+    "name": "Shaking Things Up",
+    "details": "The shockwave from Ba-Ba's slam attack will damage a wider area.",
+    "category": "Ba-Ba",
+    "modifier": 10
+  },
+  {
+    "name": "Boulderdash",
+    "details": "Ba-Ba's rolling boulders will spawn slightly faster.",
+    "category": "Ba-Ba",
+    "modifier": 10
+  },
+  {
+    "name": "Ancient Haste",
+    "details": "During the first phase of the Wardens' fight, the Wardens will charge at a faster rate.",
+    "category": "The Wardens",
+    "modifier": 10
+  },
+  {
+    "name": "Acceleration",
+    "details": "During the second phase of the Wardens' fight, the Warden attacks faster while the obelisk charges faster.",
+    "category": "The Wardens",
+    "modifier": 10
+  },
+  {
+    "name": "Penetration",
+    "details": "During the second phase of the Wardens' fight, the obelisk will deal more damage to successful attacks and also temporarily disable overhead prayers.",
+    "category": "The Wardens",
+    "modifier": 10
+  },
+  {
+    "name": "Overclocked",
+    "details": "During the final phase of the Wardens' fight, the slam attack is performed 1 tick faster.",
+    "category": "The Wardens",
+    "modifier": 10
+  },
+  {
+    "name": "Overclocked 2",
+    "details": "During the final phase of the Wardens' fight, the slam attack is performed 2 ticks faster.",
+    "category": "The Wardens",
+    "modifier": 10,
+    "dependencies": [
+      "Overclocked"
+    ]
+  },
+  {
+    "name": "Insanity",
+    "details": "During the final phase of the Wardens' fight, the slam attack is performed 3 ticks faster, there is less time to reverse the Energy Siphons, the slam attack resumes based on where the Warden left off prior to launching Energy Siphons rather than resetting positions, and the red lightning strikes faster Each row of floor tiles are removed at a faster pace.",
+    "category": "The Wardens",
+    "modifier": 50,
+    "dependencies": [
+      "Overclocked",
+      "Overclocked 2"
+    ]
+  }
+]
