@@ -8,23 +8,26 @@ interface Props {
   setRaidLevel: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const InvocationButton = styled('button')`
-  border: none;
-  cursor: pointer;
-  display: flex;
-  color: rgba(138,133,128,255);
-  text-shadow:
-  1.5px 1.2px 0px black,
-  0 1px 2px black;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
+const InvocationButton = styled('div')`
+border: none;
+cursor: pointer;
+display: flex;
+flex-direction: column;
+background: transparent;
+justify-content: center;
+align-items: center;
+height: 75px;
+width: 100%;
+color: black;
+filter: grayscale(100%) brightness(10%);
 `;
 
 const ActiveInvocationButton = styled(InvocationButton)`
 color: rgba(206,161,80,255);
+text-shadow:
+1.5px 1.2px 0px black,
+0 1px 2px black;
+filter: none;
 `;
 
 const uniqueInvocationCategories = new Set<string>([
@@ -99,6 +102,19 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
     setRaidLevel(raidLevel + invocation.modifier);
   }
 
+  const getIconPath = (invocation: Invocation): string => {
+    let formattedCategory = invocation.category;
+
+    if (invocation.category === 'Restoration') {
+      formattedCategory = invocation.name;
+    }
+
+    formattedCategory = formattedCategory.replaceAll(' ', '_')
+      .toLowerCase();
+
+    return `./icons/${formattedCategory}_icon.png`
+  }
+
   return (
     <Grid container
       columns={4}>
@@ -110,10 +126,12 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
               activeInvocationsByCategory.get(invocation.category)?.has(invocation)
                 ? <ActiveInvocationButton
                   onClick={() => handleInvocationClicked(invocation)}>
+                  <img src={getIconPath(invocation)}></img>
                   {invocation.name}
                 </ActiveInvocationButton>
                 : <InvocationButton
                   onClick={() => handleInvocationClicked(invocation)}>
+                  <img src={getIconPath(invocation)}></img>
                   {invocation.name}
                 </InvocationButton>
             }
