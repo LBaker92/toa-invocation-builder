@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
-import { Box } from '@mui/material';
 import React from 'react'
 
 interface Props {
   raidLevel: number;
 }
+
+const Container = styled('div')`
+grid-column: 2;
+display: flex;
+flex-direction: column;
+align-items: center;
+`
 
 const RaidLevelProgressBar = styled('div')`
 display: flex;
@@ -16,6 +22,7 @@ box-shadow: 0 0 0 1px black;
 `;
 
 const RaidLevelNumber = styled('span')`
+margin-bottom: 0.25rem;
 font-weight: bold;
 font-size: 24px;
 `;
@@ -44,11 +51,7 @@ const Progress = ({ raidLevel }: Props) => {
 
 const RaidStats = ({ raidLevel }: Props) => {
   return (
-    <Box padding='0 1rem'
-      display='flex'
-      flexDirection='column'
-      alignItems='center'
-      fontFamily='RuneScape-Bold-12'>
+    <Container>
       <RaidLevelNumber>
         {raidLevel}
       </RaidLevelNumber>
@@ -56,7 +59,7 @@ const RaidStats = ({ raidLevel }: Props) => {
       <RaidLevelProgressBar>
         <Progress raidLevel={raidLevel} />
       </RaidLevelProgressBar>
-    </Box>
+    </Container>
   )
 }
 

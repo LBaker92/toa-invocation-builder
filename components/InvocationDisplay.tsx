@@ -1,28 +1,29 @@
 import React, { useState } from 'react'
-import { Grid } from '@mui/material';
 import Invocations from './Invocations';
 import invocationData from '../public/invocations.json';
 import RaidStats from './RaidStats';
+import styled from '@emotion/styled';
+
+const Container = styled('div')`
+padding: 1rem;
+display: grid;
+grid-template-columns: 2fr 1fr;
+gap: 1rem;
+background: rgba(64, 55, 45, 0.97);
+box-shadow: 0 0 3rem black;
+border: 0.15rem solid black;
+`;
 
 const InvocationDisplay = () => {
   const [raidLevel, setRaidLevel] = useState(0);
 
   return (
-    <Grid container
-      width={'50%'}
-      sx={{
-        background: 'rgba(62,53,41,255)',
-        border: '5px solid rgba(28,28,26,255)',
-      }}>
-      <Grid item lg={8}>
-        <Invocations invocations={invocationData}
-          raidLevel={raidLevel}
-          setRaidLevel={setRaidLevel} />
-      </Grid>
-      <Grid item lg={4}>
-        <RaidStats raidLevel={raidLevel} />
-      </Grid>
-    </Grid >
+    <Container>
+      <Invocations invocations={invocationData}
+        raidLevel={raidLevel}
+        setRaidLevel={setRaidLevel} />
+      <RaidStats raidLevel={raidLevel} />
+    </Container>
   )
 }
 

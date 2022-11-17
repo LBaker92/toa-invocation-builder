@@ -1,4 +1,4 @@
-import { Grid, styled } from '@mui/material';
+import styled from '@emotion/styled';
 import React, { useState } from 'react'
 import { Invocation } from '../models/Invocation';
 
@@ -8,26 +8,36 @@ interface Props {
   setRaidLevel: React.Dispatch<React.SetStateAction<number>>;
 }
 
+const Container = styled('div')`
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+row-gap: 1.5rem;
+`
+
 const InvocationButton = styled('div')`
 border: none;
 cursor: pointer;
 display: flex;
 flex-direction: column;
-background: transparent;
-justify-content: center;
+justify-content: space-between;
 align-items: center;
-height: 75px;
-width: 100%;
-color: black;
-filter: grayscale(100%) brightness(10%);
-`;
-
-const ActiveInvocationButton = styled(InvocationButton)`
-color: rgba(206,161,80,255);
+background: transparent;
+color: rgba(255, 255, 255, 0.3);
 text-shadow:
 1.5px 1.2px 0px black,
 0 1px 2px black;
+`;
+
+const InvocationImage = styled('img')`
+filter: grayscale(100%) brightness(10%);
+`
+
+const ActiveInvocationImage = styled(InvocationImage)`
 filter: none;
+`
+
+const ActiveInvocationButton = styled(InvocationButton)`
+color: rgba(206,161,80,255);
 `;
 
 const uniqueInvocationCategories = new Set<string>([
@@ -116,29 +126,23 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
   }
 
   return (
-    <Grid container
-      columns={4}>
+    <Container>
       {
         invocations.map(invocation => (
-          <Grid item lg={1}
-            key={invocation.name}>
-            {
-              activeInvocationsByCategory.get(invocation.category)?.has(invocation)
-                ? <ActiveInvocationButton
-                  onClick={() => handleInvocationClicked(invocation)}>
-                  <img src={getIconPath(invocation)}></img>
-                  {invocation.name}
-                </ActiveInvocationButton>
-                : <InvocationButton
-                  onClick={() => handleInvocationClicked(invocation)}>
-                  <img src={getIconPath(invocation)}></img>
-                  {invocation.name}
-                </InvocationButton>
-            }
-          </Grid>
+          activeInvocationsByCategory.get(invocation.category)?.has(invocation)
+            ? <ActiveInvocationButton
+              onClick={() => handleInvocationClicked(invocation)}>
+              <ActiveInvocationImage src={getIconPath(invocation)}></ActiveInvocationImage>
+              {invocation.name}
+            </ActiveInvocationButton>
+            : <InvocationButton
+              onClick={() => handleInvocationClicked(invocation)}>
+              <InvocationImage src={getIconPath(invocation)}></InvocationImage>
+              {invocation.name}
+            </InvocationButton>
         ))
       }
-    </Grid >
+    </Container>
   );
 }
 
