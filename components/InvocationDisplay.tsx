@@ -14,17 +14,25 @@ box-shadow: 0 0 3rem black;
 border: 0.15rem solid black;
 `;
 
+export interface RaidStats {
+  raidLevel: number;
+  invocationCount: number;
+}
+
 const InvocationDisplay = () => {
-  const [raidLevel, setRaidLevel] = useState(0);
+  const [raidStats, setRaidStats] = useState({
+    raidLevel: 0,
+    invocationCount: 0
+  } as RaidStats);
 
   return (
     <Container>
       <Invocations invocations={invocationData}
-        raidLevel={raidLevel}
-        setRaidLevel={setRaidLevel} />
-      <RaidStats raidLevel={raidLevel} />
+        raidStats={raidStats}
+        setRaidStats={setRaidStats} />
+      <RaidStats raidStats={raidStats} />
     </Container>
   )
 }
 
-export default InvocationDisplay
+export default InvocationDisplay;

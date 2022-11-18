@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react'
 import { Invocation } from '../models/Invocation';
+import { RaidStats } from './InvocationDisplay';
 
 interface Props {
   invocations: Invocation[];
-  raidLevel: number;
-  setRaidLevel: React.Dispatch<React.SetStateAction<number>>;
+  raidStats: RaidStats;
+  setRaidStats: React.Dispatch<React.SetStateAction<RaidStats>>;
 }
 
 const Container = styled('div')`
@@ -22,7 +23,7 @@ flex-direction: column;
 justify-content: space-between;
 align-items: center;
 background: transparent;
-color: rgba(255, 255, 255, 0.3);
+color: rgba(255, 255, 255, 0.45);
 text-shadow:
 1.5px 1.2px 0px black,
 0 1px 2px black;
@@ -47,7 +48,17 @@ const uniqueInvocationCategories = new Set<string>([
   'Path Level'
 ]);
 
-const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
+const getInvocationCount = (activeInvocationsByCategory: Map<string, Set<Invocation>>): number => {
+  let totalInvocations = 0;
+
+  for (const invocationSet of activeInvocationsByCategory.values()) {
+    totalInvocations += invocationSet.size;
+  }
+
+  return totalInvocations;
+}
+
+const Invocations = ({ invocations, raidStats, setRaidStats }: Props) => {
   const [activeInvocationsByCategory, setActiveInvocationsByCategory] = useState(new Map<string, Set<Invocation>>());
 
   const handleInvocationClicked = (invocation: Invocation): void => {
@@ -56,13 +67,13 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
 
     // Current invocation exists.
     if (currentInvocations.has(invocation)) {
-      raidLevel -= invocation.modifier;
+      raidStats.raidLevel -= invocation.modifier;
       currentInvocations.delete(invocation);
 
       // Remove any invocations dependent on this current invocation.
       for (const currentInvocation of currentInvocations.values()) {
         if (currentInvocation.dependencies && currentInvocation.dependencies.includes(invocation.name)) {
-          raidLevel -= currentInvocation.modifier;
+          raidStats.raidLevel -= currentInvocation.modifier;
           currentInvocations.delete(currentInvocation);
         }
       }
@@ -70,7 +81,10 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
       currentInvocationsByCategory.set(invocation.category, currentInvocations);
 
       setActiveInvocationsByCategory(currentInvocationsByCategory);
-      setRaidLevel(raidLevel);
+      setRaidStats({
+        raidLevel: raidStats.raidLevel,
+        invocationCount: getInvocationCount(currentInvocationsByCategory)
+      } as RaidStats);
 
       return;
     }
@@ -78,7 +92,7 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
     // There can only be one invocation active for this category.
     if (uniqueInvocationCategories.has(invocation.category) && currentInvocations.size > 0) {
       for (const currentInvocation of currentInvocations.values()) {
-        raidLevel -= currentInvocation.modifier;
+        raidStats.raidLevel -= currentInvocation.modifier;
         currentInvocations.delete(currentInvocation);
       }
 
@@ -86,7 +100,10 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
       currentInvocationsByCategory.set(invocation.category, currentInvocations);
 
       setActiveInvocationsByCategory(currentInvocationsByCategory)
-      setRaidLevel(raidLevel + invocation.modifier);
+      setRaidStats({
+        raidLevel: raidStats.raidLevel + invocation.modifier,
+        invocationCount: getInvocationCount(currentInvocationsByCategory)
+      } as RaidStats);
       return;
     }
 
@@ -109,7 +126,10 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
     currentInvocationsByCategory.set(invocation.category, currentInvocations);
 
     setActiveInvocationsByCategory(currentInvocationsByCategory);
-    setRaidLevel(raidLevel + invocation.modifier);
+    setRaidStats({
+      raidLevel: raidStats.raidLevel + invocation.modifier,
+      invocationCount: getInvocationCount(currentInvocationsByCategory)
+    } as RaidStats);
   }
 
   const getIconPath = (invocation: Invocation): string => {
@@ -131,11 +151,13 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
         invocations.map(invocation => (
           activeInvocationsByCategory.get(invocation.category)?.has(invocation)
             ? <ActiveInvocationButton
+              key={invocation.name}
               onClick={() => handleInvocationClicked(invocation)}>
               <ActiveInvocationImage src={getIconPath(invocation)}></ActiveInvocationImage>
               {invocation.name}
             </ActiveInvocationButton>
             : <InvocationButton
+              key={invocation.name}
               onClick={() => handleInvocationClicked(invocation)}>
               <InvocationImage src={getIconPath(invocation)}></InvocationImage>
               {invocation.name}
@@ -146,4 +168,4 @@ const Invocations = ({ invocations, raidLevel, setRaidLevel }: Props) => {
   );
 }
 
-export default Invocations
+export default Invocations;
