@@ -7,43 +7,43 @@ interface StatsProps {
 }
 
 const Container = styled('div')`
-border: 1px solid black;
-padding: 0.5rem 1rem;
 grid-column: 2;
 display: flex;
 flex-direction: column;
-background: rgba(255, 255, 255, 0.1);
 `
 
-const RaidLevelProgressBar = styled('div')`
-display: flex;
-align-items: center;
-background: white;
-height: 1.5rem;
-box-shadow: 0 0 0 1px black;
+const StatContainer = styled('div')`
+padding: 0.75rem 0.5rem;
+border: 1px solid rgba(28,26,21,255);
+box-shadow: inset 0 0 0 1px rgba(57,57,55,255);
+background: rgba(255, 255, 255, 0.1);
 `;
 
 const Stats = styled('div')`
-margin: 0 auto;
-padding: 0.5rem 1rem;
 display: flex;
-flex-wrap: wrap;
-justify-content: space-evenly;
+justify-content: center;
 align-items: start;
-width: 60%;
 `;
 
 const Stat = styled('div')`
-padding: 0 0.5rem;
 display: flex;
 flex-direction: column;
 align-items: center;
 font-weight: 500;
 font-size: 18px;
+width: 40px;
 
 img {
-  width: 22px;
+  width: 23px;
 }
+`;
+
+const RaidLevelProgressBar = styled('div')`
+margin-top: 0.5rem;
+display: flex;
+background: rgba(255, 255, 255, 0.5);
+height: 1.5rem;
+box-shadow: 0 0 0 1px black;
 `;
 
 const Progress = ({ raidStats }: StatsProps) => {
@@ -70,7 +70,8 @@ const Progress = ({ raidStats }: StatsProps) => {
 
 const RaidLevelIcon = ({ raidStats }: StatsProps) => {
   const Icon = styled('img')`
-  width: 40px;
+  margin: 0 1rem;
+  height: 42px;
   `
   if (raidStats.raidLevel >= 300) return <Icon src="./icons/expert_mode_icon.png" />
   else if (raidStats.raidLevel >= 150) return <Icon src="./icons/normal_mode_icon.png" />
@@ -80,23 +81,25 @@ const RaidLevelIcon = ({ raidStats }: StatsProps) => {
 const RaidStats = ({ raidStats }: StatsProps) => {
   return (
     <Container>
-      <Stats>
-        <Stat>
-          <img src="./icons/raid_level_icon.png" />
-          {raidStats.raidLevel}
-        </Stat>
+      <StatContainer>
+        <Stats>
+          <Stat>
+            <img src="./icons/raid_level_icon.png" />
+            {raidStats.raidLevel}
+          </Stat>
 
-        <RaidLevelIcon raidStats={raidStats} />
+          <RaidLevelIcon raidStats={raidStats} />
 
-        <Stat>
-          <img src="./icons/invocations_icon.png" />
-          {raidStats.invocationCount}
-        </Stat>
-      </Stats>
+          <Stat>
+            <img src="./icons/invocations_icon.png" />
+            {raidStats.invocationCount}
+          </Stat>
+        </Stats>
 
-      <RaidLevelProgressBar>
-        <Progress raidStats={raidStats} />
-      </RaidLevelProgressBar>
+        <RaidLevelProgressBar>
+          <Progress raidStats={raidStats} />
+        </RaidLevelProgressBar>
+      </StatContainer>
     </Container>
   );
 }

@@ -10,9 +10,12 @@ interface Props {
 }
 
 const Container = styled('div')`
+padding: 1rem;
 display: grid;
-grid-template-columns: repeat(5, 1fr);
+grid-template-columns: repeat(4, 1fr);
 row-gap: 1.5rem;
+border: 1px solid rgba(28,26,21,255);
+box-shadow: inset 0 0 0 1px rgba(57,57,55,255);
 `
 
 const InvocationButton = styled('div')`
