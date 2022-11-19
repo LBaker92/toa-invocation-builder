@@ -10,12 +10,20 @@ interface Props {
 }
 
 const Container = styled('div')`
-padding: 1rem;
+padding: 1.5rem 1rem;
 display: grid;
+gap: 2rem;
 grid-template-columns: repeat(4, 1fr);
-row-gap: 1.5rem;
 border: 1px solid rgba(28,26,21,255);
 box-shadow: inset 0 0 0 1px rgba(57,57,55,255);
+overflow-y: auto;
+
+@media only screen and (max-width: 768px) {
+  grid-row: 2;
+  column-gap: 1rem;
+  row-gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+}
 `
 
 const InvocationButton = styled('div')`
@@ -33,7 +41,14 @@ text-shadow:
 `;
 
 const InvocationImage = styled('img')`
+margin-bottom: 0.75rem;
+transform: scale(1.3);
 filter: grayscale(100%) brightness(10%);
+
+@media only screen and (max-width: 768px) {
+  transform: scale(1);
+  margin-bottom: 0;
+}
 `
 
 const ActiveInvocationImage = styled(InvocationImage)`

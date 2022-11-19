@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Thread of Elidinis",
+    "levelRequired": 0
+  },
+  {
+    "name": "Breach of the Scarab",
+    "levelRequired": 0
+  },
+  {
+    "name": "Eye of the Corruptor",
+    "levelRequired": 0
+  },
+  {
+    "name": "Jewel of the Sun",
+    "levelRequired": 0
+  },
+  {
+    "name": "Lightbearer",
+    "levelRequired": 150
+  },
+  {
+    "name": "Osmumten's Fang",
+    "levelRequired": 150
+  },
+  {
+    "name": "Elidinis' Ward",
+    "levelRequired": 150
+  },
+  {
+    "name": "Tumeken's Shadow",
+    "levelRequired": 150
+  },
+  {
+    "name": "Masori Mask",
+    "levelRequired": 150
+  },
+  {
+    "name": "Masori Body",
+    "levelRequired": 150
+  },
+  {
+    "name": "Masori Chaps",
+    "levelRequired": 150
+  },
+  {
+    "name": "Tumeken's Guardian",
+    "levelRequired": 150
+  }
+]

@@ -12,6 +12,14 @@ gap: 1rem;
 background: rgb(64, 55, 45);
 box-shadow: 0 0 3rem 1rem rgba(0, 0, 0, 0.5);
 border: 2px solid rgba(28, 26, 21, 255);
+height: 72%;
+
+@media only screen and (max-width: 768px) {
+  border: none;
+  grid-template-columns: 1fr;
+  gap: 0;
+  height: 100%;
+}
 `;
 
 export interface RaidStats {
