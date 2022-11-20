@@ -10,11 +10,11 @@ interface Props {
 }
 
 const Container = styled('div')`
-padding: 1.5rem 1rem;
+padding: 1.5rem;
 display: grid;
 gap: 2rem;
 grid-template-columns: repeat(4, 1fr);
-border: 1px solid rgba(28,26,21,255);
+border: 1px solid rgb(28, 26, 21);
 box-shadow: inset 0 0 0 1px rgba(57,57,55,255);
 overflow-y: auto;
 
@@ -23,6 +23,12 @@ overflow-y: auto;
   column-gap: 1rem;
   row-gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
+}
+
+@media only screen and (max-width: 480px) {
+  padding: 1rem 0;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 0;
 }
 `
 
@@ -38,6 +44,10 @@ color: rgba(255, 255, 255, 0.45);
 text-shadow:
 1.5px 1.2px 0px black,
 0 1px 2px black;
+
+@media only screen and (max-width: 480px) {
+  font-size: 14px;
+}
 `;
 
 const InvocationImage = styled('img')`
@@ -45,7 +55,7 @@ margin-bottom: 0.75rem;
 transform: scale(1.3);
 filter: grayscale(100%) brightness(10%);
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 480px) {
   transform: scale(1);
   margin-bottom: 0;
 }
