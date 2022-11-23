@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+import { Tooltip } from '@mui/material';
 import React, { useState } from 'react'
 import { Invocation } from '../models/Invocation';
 import { RaidStats } from './InvocationDisplay';
 
-interface Props {
+interface InvocationsProps {
   invocations: Invocation[];
   raidStats: RaidStats;
   setRaidStats: React.Dispatch<React.SetStateAction<RaidStats>>;
@@ -30,7 +31,7 @@ overflow-y: auto;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 0;
 }
-`
+`;
 
 const InvocationButton = styled('div')`
 border: none;
@@ -59,11 +60,11 @@ filter: grayscale(100%) brightness(10%);
   transform: scale(1);
   margin-bottom: 0;
 }
-`
+`;
 
 const ActiveInvocationImage = styled(InvocationImage)`
 filter: none;
-`
+`;
 
 const ActiveInvocationButton = styled(InvocationButton)`
 color: rgba(206,161,80,255);
@@ -86,7 +87,7 @@ const getInvocationCount = (activeInvocationsByCategory: Map<string, Set<Invocat
   return totalInvocations;
 }
 
-const Invocations = ({ invocations, raidStats, setRaidStats }: Props) => {
+const Invocations = ({ invocations, raidStats, setRaidStats }: InvocationsProps) => {
   const [activeInvocationsByCategory, setActiveInvocationsByCategory] = useState(new Map<string, Set<Invocation>>());
 
   const handleInvocationClicked = (invocation: Invocation): void => {
@@ -177,19 +178,23 @@ const Invocations = ({ invocations, raidStats, setRaidStats }: Props) => {
     <Container>
       {
         invocations.map(invocation => (
-          activeInvocationsByCategory.get(invocation.category)?.has(invocation)
-            ? <ActiveInvocationButton
-              key={invocation.name}
-              onClick={() => handleInvocationClicked(invocation)}>
-              <ActiveInvocationImage src={getIconPath(invocation)}></ActiveInvocationImage>
-              {invocation.name}
-            </ActiveInvocationButton>
-            : <InvocationButton
-              key={invocation.name}
-              onClick={() => handleInvocationClicked(invocation)}>
-              <InvocationImage src={getIconPath(invocation)}></InvocationImage>
-              {invocation.name}
-            </InvocationButton>
+          <Tooltip title={invocation.details} key={invocation.name}>
+            {
+              activeInvocationsByCategory.get(invocation.category)?.has(invocation)
+                ?
+                <ActiveInvocationButton
+                  onClick={() => handleInvocationClicked(invocation)}>
+                  <ActiveInvocationImage src={getIconPath(invocation)}></ActiveInvocationImage>
+                  {invocation.name}
+                </ActiveInvocationButton>
+                :
+                <InvocationButton
+                  onClick={() => handleInvocationClicked(invocation)}>
+                  <InvocationImage src={getIconPath(invocation)}></InvocationImage>
+                  {invocation.name}
+                </InvocationButton>
+            }
+          </Tooltip>
         ))
       }
     </Container>
